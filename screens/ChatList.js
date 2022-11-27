@@ -1,10 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Button } from "react-native";
 
-const ChatList = () => {
+const ChatList = ({ navigation }) => {
   return (
     <View>
       <Text>ChatList Screen</Text>
+      <Button title="Chat Screen" onPress={() => navigation.navigate("Chat")} />
     </View>
   );
 };
