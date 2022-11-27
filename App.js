@@ -1,9 +1,12 @@
+import "react-native-gesture-handler";
+
 import React, { useCallback, useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
+import { RootNavigator } from "./navigation";
 
 // For custom SplashScreen we can change in App.json
 SplashScreen.preventAutoHideAsync();
@@ -14,11 +17,11 @@ export default function App() {
   const prepare = async () => {
     try {
       await Font.loadAsync({
-        boldP: require("./assets/fonts/Merriweather-Bold.ttf"),
-        regularP: require("./assets/fonts/Merriweather-Regular.ttf"),
-        lightP: require("./assets/fonts/Merriweather-Light.ttf"),
-        regularS: require("./assets/fonts/PatrickHand-Regular.ttf"),
-        regularT: require("./assets/fonts/RubikGlitch-Regular.ttf"),
+        primaryBold: require("./assets/fonts/Merriweather-Bold.ttf"),
+        primaryRegular: require("./assets/fonts/Merriweather-Regular.ttf"),
+        primaryLight: require("./assets/fonts/Merriweather-Light.ttf"),
+        SecondaryRegular: require("./assets/fonts/PatrickHand-Regular.ttf"),
+        TertiaryRegular: require("./assets/fonts/RubikGlitch-Regular.ttf"),
       });
     } catch (error) {
       console.log(error);
@@ -47,12 +50,10 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider style={styles.container} onLayout={onLayout}>
-      <SafeAreaView>
-        <View style={styles.container}>
-          <Text style={{ fontFamily: "regularT" }}>Hello, Welcome Pankaj</Text>
-          <StatusBar style="auto" />
-        </View>
+    <SafeAreaProvider onLayout={onLayout}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="auto" />
+        <RootNavigator />
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -61,8 +62,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
