@@ -1,3 +1,3 @@
-import { colors, fonts } from "./constants";
+import { colors, fonts, photos, fontFamilies } from "./constants";
 
-export { colors, fonts };
+export { colors, fonts, photos, fontFamilies };
