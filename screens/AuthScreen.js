@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   KeyboardAvoidingView,
+  LayoutAnimation,
 } from "react-native";
 import { colors, fonts, photos, spacing } from "../utils";
 import { SignUpForm, SignInForm } from "../components";
@@ -15,6 +16,7 @@ const AuthScreen = () => {
   const [isSignUp, setIsSignUp] = useState(false);
 
   const toggleForm = useCallback(() => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setIsSignUp((prev) => !prev);
   }, []);
 

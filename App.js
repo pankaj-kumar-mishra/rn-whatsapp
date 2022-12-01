@@ -1,13 +1,20 @@
 import "react-native-gesture-handler";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, UIManager, Platform } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { RootNavigator } from "./navigation";
 import { fontFamilies } from "./utils";
+
+if (
+  Platform.OS === "android" &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 // For custom SplashScreen we can change in App.json
 SplashScreen.preventAutoHideAsync();
