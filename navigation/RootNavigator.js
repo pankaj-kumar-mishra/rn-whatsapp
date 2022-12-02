@@ -4,10 +4,10 @@ import AuthNavigator from "./AuthNavigator";
 import MainNavigator from "./MainNavigator";
 
 const RootNavigator = () => {
+  const isAuthenticated = false;
   return (
     <NavigationContainer>
-      {/* <AuthNavigator /> */}
-      <MainNavigator />
+      {isAuthenticated ? <MainNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };

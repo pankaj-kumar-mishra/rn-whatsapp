@@ -1,6 +1,6 @@
 import ChatList from "./ChatList";
 import Chat from "./Chat";
 import Settings from "./Settings";
-import SignUp from "./SignUp";
+import AuthScreen from "./AuthScreen";
 
-export { SignUp, ChatList, Chat, Settings };
+export { AuthScreen, ChatList, Chat, Settings };
