@@ -2,7 +2,22 @@ import React from "react";
 import { View, StyleSheet, TextInput, Text } from "react-native";
 import { colors, fonts, spacing } from "../utils";
 
-const Input = ({ label, error, IconPack, icon, iconSize }) => {
+const Input = ({
+  label,
+  error,
+  IconPack,
+  icon,
+  iconSize,
+  id,
+  onInputChange,
+  ...rest
+}) => {
+  const onChangeTextHandler = (text) => {
+    if (!onInputChange) {
+      return;
+    }
+    onInputChange(id, text);
+  };
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
@@ -10,7 +25,11 @@ const Input = ({ label, error, IconPack, icon, iconSize }) => {
         {icon && IconPack ? (
           <IconPack name={icon} size={iconSize || 18} style={styles.icon} />
         ) : null}
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          {...rest}
+          onChangeText={onChangeTextHandler}
+        />
       </View>
       {error ? (
         <View style={styles.errorContainer}>
