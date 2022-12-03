@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { View, StyleSheet, TextInput, Text } from "react-native";
 import { colors, fonts, spacing } from "../utils";
 
@@ -12,7 +13,7 @@ const Input = ({
   onInputChange,
   ...rest
 }) => {
-  const onChangeTextHandler = (text) => {
+  const onChangeTextHandler = text => {
     if (!onInputChange) {
       return;
     }
@@ -38,6 +39,16 @@ const Input = ({
       ) : null}
     </View>
   );
+};
+
+Input.propTypes = {
+  label: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  IconPack: PropTypes.element,
+  icon: PropTypes.string,
+  iconSize: PropTypes.number,
+  id: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

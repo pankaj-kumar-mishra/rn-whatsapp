@@ -1,5 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import PropTypes from "prop-types";
+import { View, Text, Button } from "react-native";
 
 const ChatList = ({ navigation }) => {
   return (
@@ -10,6 +11,10 @@ const ChatList = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+ChatList.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }),
+};
 
 export default ChatList;

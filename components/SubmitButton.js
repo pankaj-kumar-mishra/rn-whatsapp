@@ -1,5 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Pressable, Text } from "react-native";
+import PropTypes from "prop-types";
+import { StyleSheet, Pressable, Text } from "react-native";
 import { colors, fonts, spacing } from "../utils";
 
 const SubmitButton = ({ disabled, text }) => {
@@ -27,6 +28,11 @@ const SubmitButton = ({ disabled, text }) => {
       </Text>
     </Pressable>
   );
+};
+
+SubmitButton.propTypes = {
+  disabled: PropTypes.bool,
+  text: PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({
