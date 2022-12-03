@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import {
   View,
   StyleSheet,
-  Text,
   ImageBackground,
   TextInput,
   TouchableOpacity,
@@ -40,7 +39,7 @@ const Chat = () => {
             onChangeText={setMsgTxt}
             onSubmitEditing={handleSendMsg}
           />
-          {Boolean(msgTxt) ? (
+          {msgTxt ? (
             <TouchableOpacity
               onPress={handleSendMsg}
               activeOpacity={0.8}

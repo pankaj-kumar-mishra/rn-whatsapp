@@ -7,7 +7,7 @@ export const validateString = (id, value) => {
   const constraints = {
     presence: { allowEmpty: false, message: "Can't be empty!" },
   };
-  if (Boolean(value)) {
+  if (value) {
     constraints.format = {
       pattern: "[a-z]+",
       flags: "i",
@@ -23,7 +23,7 @@ export const validateEmail = (id, value) => {
   const constraints = {
     presence: { allowEmpty: false, message: "Can't be empty!" },
   };
-  if (Boolean(value)) {
+  if (value) {
     constraints.email = true;
   }
 
@@ -35,7 +35,7 @@ export const validatePassword = (id, value) => {
   const constraints = {
     presence: { allowEmpty: false, message: "Can't be empty!" },
   };
-  if (Boolean(value)) {
+  if (value) {
     constraints.length = {
       minimum: 6,
       maximum: 10,

@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import SubmitButton from "./SubmitButton";
 import Input from "./Input";
@@ -35,7 +34,5 @@ const SingInForm = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default SingInForm;
