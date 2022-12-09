@@ -16,7 +16,7 @@ export const validateString = (id, value) => {
   }
 
   const result = validate({ [id]: value }, { [id]: constraints });
-  return result?.[id];
+  return result?.[id]?.[0];
 };
 
 export const validateEmail = (id, value) => {
@@ -28,7 +28,7 @@ export const validateEmail = (id, value) => {
   }
 
   const result = validate({ [id]: value }, { [id]: constraints });
-  return result?.[id];
+  return result?.[id]?.[0];
 };
 
 export const validatePassword = (id, value) => {
@@ -43,5 +43,5 @@ export const validatePassword = (id, value) => {
   }
 
   const result = validate({ [id]: value }, { [id]: constraints });
-  return result?.[id];
+  return result?.[id]?.[0];
 };

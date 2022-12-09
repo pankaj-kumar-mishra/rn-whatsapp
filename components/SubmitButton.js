@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import { StyleSheet, Pressable, Text } from "react-native";
 import { colors, fonts, spacing } from "../utils";
 
-const SubmitButton = ({ disabled, text }) => {
+const SubmitButton = ({ disabled, text, onPress }) => {
   return (
     <Pressable
       disabled={disabled}
+      onPress={onPress}
       style={({ pressed }) => [
         styles.btn,
         {
@@ -33,6 +34,7 @@ const SubmitButton = ({ disabled, text }) => {
 SubmitButton.propTypes = {
   disabled: PropTypes.bool,
   text: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

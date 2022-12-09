@@ -5,6 +5,7 @@ import {
   validateEmail,
   validatePassword,
 } from "./validationConstraints";
+import { validationFormTypes, validationReducer } from "./reducers";
 
 export {
   colors,
@@ -16,4 +17,6 @@ export {
   validateEmail,
   validatePassword,
   validateInput,
+  validationFormTypes,
+  validationReducer,
 };
