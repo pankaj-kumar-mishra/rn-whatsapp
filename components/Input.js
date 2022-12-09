@@ -28,13 +28,14 @@ const Input = ({
         ) : null}
         <TextInput
           style={styles.input}
+          autoCorrect={false}
           {...rest}
           onChangeText={onChangeTextHandler}
         />
       </View>
       {error ? (
         <View style={styles.errorContainer}>
-          <Text style={styles.error}>Error message</Text>
+          <Text style={styles.error}>{error}</Text>
         </View>
       ) : null}
     </View>
@@ -44,7 +45,7 @@ const Input = ({
 Input.propTypes = {
   label: PropTypes.string.isRequired,
   error: PropTypes.string,
-  IconPack: PropTypes.element,
+  IconPack: PropTypes.elementType,
   icon: PropTypes.string,
   iconSize: PropTypes.number,
   id: PropTypes.string.isRequired,
