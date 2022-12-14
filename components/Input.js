@@ -13,6 +13,7 @@ const Input = ({
   onInputChange,
   ...rest
 }) => {
+  console.log(error);
   const onChangeTextHandler = text => {
     if (!onInputChange) {
       return;
@@ -42,9 +43,13 @@ const Input = ({
   );
 };
 
+// Input.defaultProps = {
+//   error: "Pankaj",
+// };
+
 Input.propTypes = {
   label: PropTypes.string.isRequired,
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   IconPack: PropTypes.elementType,
   icon: PropTypes.string,
   iconSize: PropTypes.number,

@@ -1,13 +1,15 @@
 import "react-native-gesture-handler";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { StyleSheet, UIManager, Platform } from "react-native";
+import { StyleSheet, UIManager, Platform, LogBox } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { RootNavigator } from "./navigation";
 import { fontFamilies } from "./utils";
+
+LogBox.ignoreLogs(["AsyncStorage has been extracted"]);
 
 if (
   Platform.OS === "android" &&
