@@ -1,4 +1,4 @@
-import { validateInput } from "./actions";
+import { validateInput, signUp } from "./actions";
 import { colors, fonts, spacing, photos, fontFamilies } from "./constants";
 import {
   validateString,
@@ -6,6 +6,7 @@ import {
   validatePassword,
 } from "./validationConstraints";
 import { validationFormTypes, validationReducer } from "./reducers";
+import { getFirebaseApp, getFirebaseErrorMsg } from "./firebase";
 
 export {
   colors,
@@ -19,4 +20,7 @@ export {
   validateInput,
   validationFormTypes,
   validationReducer,
+  getFirebaseApp,
+  signUp,
+  getFirebaseErrorMsg,
 };

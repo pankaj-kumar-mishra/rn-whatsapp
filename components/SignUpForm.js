@@ -1,12 +1,14 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useState, useEffect } from "react";
 import { FontAwesome, Entypo } from "@expo/vector-icons";
 import SubmitButton from "./SubmitButton";
 import Input from "./Input";
 import {
+  signUp,
   validateInput,
   validationFormTypes,
   validationReducer,
 } from "../utils";
+import { Alert } from "react-native";
 
 const initialState = {
   inputValues: {
@@ -31,6 +33,14 @@ const SignUpForm = () => {
   );
 
   const { inputValidities, formIsValid, inputValues } = formState;
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert("Error Occurred!!!", error);
+    }
+  }, [error]);
 
   const onInputChangeHandler = useCallback(
     (id, value) => {
@@ -47,8 +57,16 @@ const SignUpForm = () => {
     [dispatchFormState],
   );
 
-  const handleSubmit = useCallback(() => {
-    console.log(inputValues);
+  const handleSubmit = useCallback(async () => {
+    try {
+      setLoading(true);
+      await signUp(inputValues);
+      setError(null);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   }, [inputValues]);
 
   return (
@@ -94,6 +112,7 @@ const SignUpForm = () => {
         text="Sign Up"
         disabled={!formIsValid}
         onPress={handleSubmit}
+        loading={loading}
       />
     </>
   );

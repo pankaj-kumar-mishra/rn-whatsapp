@@ -1,3 +1,4 @@
+import { signUp } from "./authActions";
 import { validateInput } from "./formActions";
 
-export { validateInput };
+export { validateInput, signUp };
