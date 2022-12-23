@@ -7,6 +7,7 @@ import {
 } from "./validationConstraints";
 import { validationFormTypes, validationReducer } from "./reducers";
 import { getFirebaseApp, getFirebaseErrorMsg } from "./firebase";
+import { storageKeys, saveDataToStorage } from "./storage";
 
 export {
   colors,
@@ -23,4 +24,6 @@ export {
   getFirebaseApp,
   signUp,
   getFirebaseErrorMsg,
+  storageKeys,
+  saveDataToStorage,
 };
