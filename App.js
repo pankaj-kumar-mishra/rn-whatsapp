@@ -6,10 +6,12 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
+import { Provider } from "react-redux";
 import { RootNavigator } from "./navigation";
 import { fontFamilies } from "./utils";
+import { store } from "./store";
 
-LogBox.ignoreLogs(["AsyncStorage has been extracted"]);
+// LogBox.ignoreLogs(["AsyncStorage has been extracted"]);
 
 if (
   Platform.OS === "android" &&
@@ -54,15 +56,17 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider onLayout={onLayout}>
-      <SafeAreaView
-        //edges={["top", "right", "bottom", "left"]}
-        style={styles.container}
-      >
-        <StatusBar style="auto" />
-        <RootNavigator />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider onLayout={onLayout}>
+        <SafeAreaView
+          //edges={["top", "right", "bottom", "left"]}
+          style={styles.container}
+        >
+          <StatusBar style="auto" />
+          <RootNavigator />
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
 

@@ -1,5 +1,7 @@
 import React, { useCallback, useReducer, useState, useEffect } from "react";
 import { FontAwesome, Entypo } from "@expo/vector-icons";
+import { Alert } from "react-native";
+import { useDispatch } from "react-redux";
 import SubmitButton from "./SubmitButton";
 import Input from "./Input";
 import {
@@ -8,7 +10,6 @@ import {
   validationFormTypes,
   validationReducer,
 } from "../utils";
-import { Alert } from "react-native";
 
 const initialState = {
   inputValues: {
@@ -27,6 +28,8 @@ const initialState = {
 };
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
+
   const [formState, dispatchFormState] = useReducer(
     validationReducer,
     initialState,
@@ -57,10 +60,10 @@ const SignUpForm = () => {
     [dispatchFormState],
   );
 
-  const handleSubmit = useCallback(async () => {
+  const handleSubmit = useCallback(() => {
     try {
       setLoading(true);
-      await signUp(inputValues);
+      dispatch(signUp(inputValues));
       setError(null);
     } catch (error) {
       setError(error.message);
