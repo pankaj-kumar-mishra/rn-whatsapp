@@ -11,7 +11,7 @@ import { RootNavigator } from "./navigation";
 import { fontFamilies } from "./utils";
 import { store } from "./store";
 
-// LogBox.ignoreLogs(["AsyncStorage has been extracted"]);
+LogBox.ignoreLogs(["AsyncStorage has been extracted"]);
 
 if (
   Platform.OS === "android" &&

@@ -4,7 +4,7 @@ export const storageKeys = {
   USER_TOKEN: "userToken",
 };
 
-export const saveDataToStorage = async ({ token, expiryDate, userId }) => {
+export const saveAuthDataToStorage = async ({ token, expiryDate, userId }) => {
   await AsyncStorage.setItem(
     storageKeys.USER_TOKEN,
     JSON.stringify({
@@ -13,4 +13,9 @@ export const saveDataToStorage = async ({ token, expiryDate, userId }) => {
       expiryDate: expiryDate.toISOString(),
     }),
   );
+};
+
+export const getAuthDataFromStorage = async () => {
+  const data = await AsyncStorage.getItem(storageKeys.USER_TOKEN);
+  return data ? JSON.parse(data) : null;
 };

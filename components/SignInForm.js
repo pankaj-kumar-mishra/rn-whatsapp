@@ -1,8 +1,11 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useState, useEffect } from "react";
+import { Alert } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
 import SubmitButton from "./SubmitButton";
 import Input from "./Input";
 import {
+  signIn,
   validateInput,
   validationFormTypes,
   validationReducer,
@@ -21,12 +24,21 @@ const initialState = {
 };
 
 const SingInForm = () => {
+  const dispatch = useDispatch();
   const [formState, dispatchFormState] = useReducer(
     validationReducer,
     initialState,
   );
 
   const { inputValidities, formIsValid, inputValues } = formState;
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert("Error Occurred!!!", error);
+    }
+  }, [error]);
 
   const onInputChangeHandler = useCallback(
     (id, value) => {
@@ -44,7 +56,15 @@ const SingInForm = () => {
   );
 
   const handleSubmit = useCallback(() => {
-    console.log(inputValues);
+    try {
+      setLoading(true);
+      dispatch(signIn(inputValues));
+      setError(null);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   }, [inputValues]);
 
   return (
@@ -74,6 +94,7 @@ const SingInForm = () => {
         text="Sign In"
         disabled={!formIsValid}
         onPress={handleSubmit}
+        loading={loading}
       />
     </>
   );
