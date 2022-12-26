@@ -1,4 +1,4 @@
 import { store } from "./store";
-import { authSlice, authenticate } from "./slices";
+import { authSlice, authenticate, setDidTryAuthLogin } from "./slices";
 
-export { store, authSlice, authenticate };
+export { store, authSlice, authenticate, setDidTryAuthLogin };

@@ -1,3 +1,3 @@
-import authSlice, { authenticate } from "./authSlice";
+import authSlice, { authenticate, setDidTryAuthLogin } from "./authSlice";
 
-export { authSlice, authenticate };
+export { authSlice, authenticate, setDidTryAuthLogin };

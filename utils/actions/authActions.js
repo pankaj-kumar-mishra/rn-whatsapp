@@ -1,8 +1,17 @@
-import { getFirebaseApp, getFirebaseErrorMsg } from "../firebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  fbCollections,
+  getFirebaseApp,
+  getFirebaseErrorMsg,
+} from "../firebase";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { child, getDatabase, ref, set } from "firebase/database";
 import { authenticate } from "../../store/slices";
-import { saveDataToStorage } from "../storage";
+import { saveAuthDataToStorage } from "../storage";
+import { getUserData } from "./userActions";
 
 const createUser = async ({ firstName, lastName, email, userId }) => {
   const fullName = `${firstName} ${lastName}`.toLowerCase();
@@ -15,7 +24,7 @@ const createUser = async ({ firstName, lastName, email, userId }) => {
     createdAt: new Date().toISOString(),
   };
   const dbRef = ref(getDatabase());
-  const childRef = child(dbRef, `users/${userId}`);
+  const childRef = child(dbRef, `${fbCollections.USERS}/${userId}`);
 
   await set(childRef, userData);
   return userData;
@@ -45,7 +54,30 @@ export const signUp = ({ firstName, lastName, email, password }) => {
       });
       const expiryDate = new Date(expirationTime);
       dispatch(authenticate({ token, userData }));
-      saveDataToStorage({ token, expiryDate, userId });
+      saveAuthDataToStorage({ token, expiryDate, userId });
+    } catch (error) {
+      const message = getFirebaseErrorMsg(error.code);
+      throw new Error(message);
+    }
+  };
+};
+
+export const signIn = ({ email, password }) => {
+  return async dispatch => {
+    const app = getFirebaseApp();
+    const auth = getAuth(app);
+
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+
+      const {
+        uid: userId,
+        stsTokenManager: { accessToken: token, expirationTime },
+      } = result.user;
+      const userData = await getUserData(userId);
+      const expiryDate = new Date(expirationTime);
+      dispatch(authenticate({ token, userData }));
+      saveAuthDataToStorage({ token, expiryDate, userId });
     } catch (error) {
       const message = getFirebaseErrorMsg(error.code);
       throw new Error(message);

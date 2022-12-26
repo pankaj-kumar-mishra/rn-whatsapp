@@ -1,4 +1,4 @@
-import { validateInput, signUp } from "./actions";
+import { validateInput, signUp, getUserData, signIn } from "./actions";
 import { colors, fonts, spacing, photos, fontFamilies } from "./constants";
 import {
   validateString,
@@ -6,8 +6,12 @@ import {
   validatePassword,
 } from "./validationConstraints";
 import { validationFormTypes, validationReducer } from "./reducers";
-import { getFirebaseApp, getFirebaseErrorMsg } from "./firebase";
-import { storageKeys, saveDataToStorage } from "./storage";
+import { getFirebaseApp, getFirebaseErrorMsg, fbCollections } from "./firebase";
+import {
+  storageKeys,
+  saveAuthDataToStorage,
+  getAuthDataFromStorage,
+} from "./storage";
 
 export {
   colors,
@@ -24,6 +28,10 @@ export {
   getFirebaseApp,
   signUp,
   getFirebaseErrorMsg,
+  fbCollections,
   storageKeys,
-  saveDataToStorage,
+  saveAuthDataToStorage,
+  getAuthDataFromStorage,
+  getUserData,
+  signIn,
 };

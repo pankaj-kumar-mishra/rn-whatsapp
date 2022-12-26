@@ -44,4 +44,5 @@ export const fontFamilies = {
 export const photos = {
   bgImg: require("../assets/images/droplet.jpeg"),
   logo: require("../assets/images/logo.png"),
+  splash: require("../assets/splash.png"),
 };

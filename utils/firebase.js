@@ -39,3 +39,7 @@ export const getFirebaseErrorMsg = errorCode => {
   }
   return message;
 };
+
+export const fbCollections = {
+  USERS: "users",
+};
