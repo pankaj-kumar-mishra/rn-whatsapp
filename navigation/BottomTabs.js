@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 18,
-    fontFamily: fonts.SecondaryRegular,
+    fontFamily: fonts.secondaryRegular,
   },
 });
 

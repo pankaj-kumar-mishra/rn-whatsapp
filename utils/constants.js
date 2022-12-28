@@ -16,8 +16,8 @@ export const fonts = {
   primaryBold: "primaryBold",
   primaryRegular: "primaryRegular",
   primaryLight: "primaryLight",
-  SecondaryRegular: "SecondaryRegular",
-  TertiaryRegular: "TertiaryRegular",
+  secondaryRegular: "secondaryRegular",
+  tertiaryRegular: "tertiaryRegular",
 };
 
 export const spacing = {
@@ -37,8 +37,8 @@ export const fontFamilies = {
   primaryBold: require("../assets/fonts/Merriweather-Bold.ttf"),
   primaryRegular: require("../assets/fonts/Merriweather-Regular.ttf"),
   primaryLight: require("../assets/fonts/Merriweather-Light.ttf"),
-  SecondaryRegular: require("../assets/fonts/PatrickHand-Regular.ttf"),
-  TertiaryRegular: require("../assets/fonts/RubikGlitch-Regular.ttf"),
+  secondaryRegular: require("../assets/fonts/PatrickHand-Regular.ttf"),
+  tertiaryRegular: require("../assets/fonts/RubikGlitch-Regular.ttf"),
 };
 
 export const photos = {
