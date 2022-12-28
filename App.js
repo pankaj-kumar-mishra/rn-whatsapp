@@ -8,7 +8,7 @@ import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { Provider } from "react-redux";
 import { RootNavigator } from "./navigation";
-import { fontFamilies } from "./utils";
+import { clearAuthDataFromStorage, fontFamilies } from "./utils";
 import { store } from "./store";
 
 LogBox.ignoreLogs(["AsyncStorage has been extracted"]);
@@ -28,6 +28,9 @@ export default function App() {
 
   const prepare = async () => {
     try {
+      // For reset Auth Data
+      await clearAuthDataFromStorage();
+
       await Font.loadAsync(fontFamilies);
     } catch (error) {
       console.log(error);

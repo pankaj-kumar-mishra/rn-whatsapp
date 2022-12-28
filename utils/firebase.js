@@ -30,7 +30,10 @@ export const getFirebaseErrorMsg = errorCode => {
       message = "This email is already in use!";
       break;
     case "auth/invalid-email":
-      message = "This email is not valid!";
+      message = "This email/password* is not valid!";
+      break;
+    case "auth/wrong-password":
+      message = "This email/password** is not valid!";
       break;
 
     default:

@@ -60,10 +60,10 @@ const SignUpForm = () => {
     [dispatchFormState],
   );
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     try {
       setLoading(true);
-      dispatch(signUp(inputValues));
+      await dispatch(signUp(inputValues));
       setError(null);
     } catch (error) {
       setError(error.message);

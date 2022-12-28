@@ -19,3 +19,7 @@ export const getAuthDataFromStorage = async () => {
   const data = await AsyncStorage.getItem(storageKeys.USER_TOKEN);
   return data ? JSON.parse(data) : null;
 };
+
+export const clearAuthDataFromStorage = async () => {
+  await AsyncStorage.removeItem(storageKeys.USER_TOKEN);
+};
