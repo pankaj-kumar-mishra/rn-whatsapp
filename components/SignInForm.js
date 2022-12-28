@@ -55,10 +55,10 @@ const SingInForm = () => {
     [dispatchFormState],
   );
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     try {
       setLoading(true);
-      dispatch(signIn(inputValues));
+      await dispatch(signIn(inputValues));
       setError(null);
     } catch (error) {
       setError(error.message);

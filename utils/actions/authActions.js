@@ -9,9 +9,19 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { child, getDatabase, ref, set } from "firebase/database";
-import { authenticate } from "../../store/slices";
-import { saveAuthDataToStorage } from "../storage";
+import { authenticate, logout } from "../../store/slices";
+import { clearAuthDataFromStorage, saveAuthDataToStorage } from "../storage";
 import { getUserData } from "./userActions";
+
+let logoutTimer;
+
+export const signOut = () => {
+  return async dispatch => {
+    clearAuthDataFromStorage();
+    clearTimeout(logoutTimer);
+    dispatch(logout());
+  };
+};
 
 const createUser = async ({ firstName, lastName, email, userId }) => {
   const fullName = `${firstName} ${lastName}`.toLowerCase();
@@ -53,8 +63,15 @@ export const signUp = ({ firstName, lastName, email, password }) => {
         userId,
       });
       const expiryDate = new Date(expirationTime);
+      const timeNow = new Date();
+      const milliSecondsUntilExpiry = expiryDate - timeNow;
+
       dispatch(authenticate({ token, userData }));
       saveAuthDataToStorage({ token, expiryDate, userId });
+
+      logoutTimer = setTimeout(() => {
+        dispatch(signOut());
+      }, milliSecondsUntilExpiry);
     } catch (error) {
       const message = getFirebaseErrorMsg(error.code);
       throw new Error(message);
@@ -76,8 +93,15 @@ export const signIn = ({ email, password }) => {
       } = result.user;
       const userData = await getUserData(userId);
       const expiryDate = new Date(expirationTime);
+      const timeNow = new Date();
+      const milliSecondsUntilExpiry = expiryDate - timeNow;
+
       dispatch(authenticate({ token, userData }));
       saveAuthDataToStorage({ token, expiryDate, userId });
+
+      logoutTimer = setTimeout(() => {
+        dispatch(signOut());
+      }, milliSecondsUntilExpiry);
     } catch (error) {
       const message = getFirebaseErrorMsg(error.code);
       throw new Error(message);
