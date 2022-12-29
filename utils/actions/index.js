@@ -1,5 +1,3 @@
-import { signUp, signIn } from "./authActions";
-import { validateInput } from "./formActions";
-import { getUserData } from "./userActions";
-
-export { validateInput, signUp, getUserData, signIn };
+export * from "./authActions";
+export * from "./formActions";
+export * from "./userActions";

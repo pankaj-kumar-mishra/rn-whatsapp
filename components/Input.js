@@ -11,6 +11,7 @@ const Input = ({
   iconSize,
   id,
   onInputChange,
+  defaultValue,
   ...rest
 }) => {
   console.log(error);
@@ -20,6 +21,7 @@ const Input = ({
     }
     onInputChange(id, text);
   };
+
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
@@ -30,6 +32,7 @@ const Input = ({
         <TextInput
           style={styles.input}
           autoCorrect={false}
+          defaultValue={defaultValue}
           {...rest}
           onChangeText={onChangeTextHandler}
         />
@@ -43,9 +46,9 @@ const Input = ({
   );
 };
 
-// Input.defaultProps = {
-//   error: "Pankaj",
-// };
+Input.defaultProps = {
+  defaultValue: "",
+};
 
 Input.propTypes = {
   label: PropTypes.string.isRequired,
@@ -54,13 +57,14 @@ Input.propTypes = {
   icon: PropTypes.string,
   iconSize: PropTypes.number,
   id: PropTypes.string.isRequired,
-  onInputChange: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func,
+  defaultValue: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
   label: {
     marginVertical: 8,
-    fontFamily: fonts.SecondaryRegular,
+    fontFamily: fonts.secondaryRegular,
     letterSpacing: 1,
     fontSize: 18,
     color: colors.text,

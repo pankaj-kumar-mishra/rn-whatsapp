@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   link: {
     fontSize: 16,
-    fontFamily: fonts.SecondaryRegular,
+    fontFamily: fonts.secondaryRegular,
     color: colors.link,
     letterSpacing: 0.3,
   },

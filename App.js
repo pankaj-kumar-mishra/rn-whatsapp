@@ -29,8 +29,7 @@ export default function App() {
   const prepare = async () => {
     try {
       // For reset Auth Data
-      await clearAuthDataFromStorage();
-
+      // await clearAuthDataFromStorage();
       await Font.loadAsync(fontFamilies);
     } catch (error) {
       console.log(error);
