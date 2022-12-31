@@ -8,7 +8,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { child, getDatabase, ref, set, update } from "firebase/database";
+import { child, getDatabase, ref, set } from "firebase/database";
 import { authenticate, logout } from "../../store/slices";
 import { clearAuthDataFromStorage, saveAuthDataToStorage } from "../storage";
 import { getUserData } from "./userActions";
@@ -107,21 +107,4 @@ export const signIn = ({ email, password }) => {
       throw new Error(message);
     }
   };
-};
-
-export const updateUser = async ({ firstName, lastName, about, userId }) => {
-  const fullName = `${firstName} ${lastName}`.toLowerCase();
-  const userData = {
-    firstName,
-    lastName,
-    fullName,
-    userId,
-    about,
-    updatedAt: new Date().toISOString(),
-  };
-  const dbRef = ref(getDatabase());
-  const childRef = child(dbRef, `${fbCollections.USERS}/${userId}`);
-
-  await update(childRef, userData);
-  return userData;
 };
