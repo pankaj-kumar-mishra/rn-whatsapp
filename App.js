@@ -8,7 +8,7 @@ import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { Provider } from "react-redux";
 import { RootNavigator } from "./navigation";
-import { clearAuthDataFromStorage, fontFamilies } from "./utils";
+import { clearAuthDataFromStorage, colors, fontFamilies } from "./utils";
 import { store } from "./store";
 
 LogBox.ignoreLogs(["AsyncStorage has been extracted"]);
@@ -60,11 +60,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaProvider onLayout={onLayout}>
-        <SafeAreaView
-          //edges={["top", "right", "bottom", "left"]}
-          style={styles.container}
-        >
-          <StatusBar style="auto" />
+        <StatusBar style="dark" />
+        <SafeAreaView edges={["right", "left"]} style={styles.container}>
           <RootNavigator />
         </SafeAreaView>
       </SafeAreaProvider>
@@ -75,5 +72,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.tertiary,
   },
 });

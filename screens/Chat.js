@@ -61,7 +61,6 @@ const Chat = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
   },
   flex: {
     flex: 1,

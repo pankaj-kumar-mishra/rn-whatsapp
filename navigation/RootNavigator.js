@@ -5,10 +5,17 @@ import AuthNavigator from "./AuthNavigator";
 import MainNavigator from "./MainNavigator";
 import { StartUpScreen } from "../screens";
 import { refreshJwtToken } from "../utils";
+import { LayoutAnimation } from "react-native";
 
 const RootNavigator = () => {
   const { token, didTryAuthLogin } = useSelector(state => state.auth);
   const isAuthenticated = token;
+
+  useEffect(() => {
+    LayoutAnimation.configureNext(
+      LayoutAnimation.create(400, "easeInEaseOut", "scaleY"),
+    );
+  }, [isAuthenticated, didTryAuthLogin]);
 
   useEffect(() => {
     if (isAuthenticated) {
