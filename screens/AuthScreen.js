@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: spacing.x5,
-    backgroundColor: colors.white,
   },
   logoContainer: {
     alignItems: "center",
